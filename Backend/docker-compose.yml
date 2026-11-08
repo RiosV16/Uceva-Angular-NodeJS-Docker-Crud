@@ -2,7 +2,7 @@ version: '3'
 
 services:
   myDB:
-    image: postgres:15.3
+    image: postgres:15
     container_name: backend-crud-app
     restart: always
     ports:
