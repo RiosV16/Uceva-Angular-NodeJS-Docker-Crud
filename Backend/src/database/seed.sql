@@ -54,3 +54,26 @@ INSERT INTO courses (
 ('Desarrollo de Aplicaciones Móviles', 'Fundamentos y desarrollo de aplicaciones para dispositivos móviles.', 3, 7, TRUE),
 
 ('Inteligencia Artificial', 'Fundamentos de inteligencia artificial, aprendizaje automático y algoritmos inteligentes.', 4, 8, TRUE);
+
+INSERT INTO professors (
+    name,
+    email,
+    specialty,
+    status
+)
+VALUES
+('Carlos Gomez', 'carlos.gomez@uceva.edu.co',
+ 'Programacion', TRUE),
+
+('Maria Lopez', 'maria.lopez@uceva.edu.co',
+ 'Bases de Datos', TRUE),
+
+('Pedro Ramirez', 'pedro.ramirez@uceva.edu.co',
+ 'Redes', TRUE),
+
+('Ana Martinez', 'ana.martinez@uceva.edu.co',
+ 'Matematicas', TRUE),
+
+('Luis Torres', 'luis.torres@uceva.edu.co',
+ 'Ingenieria de Software', FALSE)
+ON CONFLICT (email) DO NOTHING;
