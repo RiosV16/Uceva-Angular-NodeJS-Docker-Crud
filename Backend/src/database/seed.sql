@@ -77,3 +77,12 @@ VALUES
 ('Luis Torres', 'luis.torres@uceva.edu.co',
  'Ingenieria de Software', FALSE)
 ON CONFLICT (email) DO NOTHING;
+
+INSERT INTO rooms (code, building, capacity, available)
+VALUES
+('A101', 'Bloque A', 35, TRUE),
+('A102', 'Bloque A', 40, TRUE),
+('B201', 'Bloque B', 30, TRUE),
+('B202', 'Bloque B', 45, FALSE),
+('C301', 'Bloque C', 25, TRUE)
+ON CONFLICT (code) DO NOTHING;
