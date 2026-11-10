@@ -1,0 +1,69 @@
+
+<div class="container mt-4">
+  <h2 class="mb-4">Actualizar profesor</h2>
+
+  <div *ngIf="loading" class="alert alert-info">
+    Cargando datos...
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <form
+    *ngIf="!loading && !error"
+    #form="ngForm"
+    (ngSubmit)="save()">
+
+    <div class="mb-3">
+      <label class="form-label">Nombre</label>
+      <input
+        class="form-control"
+        name="name"
+        [(ngModel)]="professor.name"
+        required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Correo electrónico</label>
+      <input
+        type="email"
+        class="form-control"
+        name="email"
+        [(ngModel)]="professor.email"
+        required
+        email>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Especialidad</label>
+      <input
+        class="form-control"
+        name="specialty"
+        [(ngModel)]="professor.specialty"
+        required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Estado</label>
+      <select
+        class="form-select"
+        name="status"
+        [(ngModel)]="professor.status">
+        <option [ngValue]="true">Activo</option>
+        <option [ngValue]="false">Inactivo</option>
+      </select>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary me-2"
+      [disabled]="form.invalid || saving">
+      {{ saving ? 'Guardando...' : 'Actualizar' }}
+    </button>
+
+    <a routerLink="/professors/list" class="btn btn-secondary">
+      Cancelar
+    </a>
+  </form>
+</div>

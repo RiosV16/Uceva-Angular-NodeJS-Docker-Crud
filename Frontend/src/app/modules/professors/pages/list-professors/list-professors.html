@@ -1,0 +1,72 @@
+
+<div class="container mt-4">
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Listado de profesores</h2>
+
+    <a routerLink="/professors/create" class="btn btn-primary">
+      Crear profesor
+    </a>
+  </div>
+
+  <div *ngIf="loading" class="alert alert-info">
+    Cargando profesores...
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <table *ngIf="!loading" class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Especialidad</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let professor of professors">
+        <td>{{ professor.id }}</td>
+        <td>{{ professor.name }}</td>
+        <td>{{ professor.email }}</td>
+        <td>{{ professor.specialty }}</td>
+
+        <td>
+          {{ professor.status ? 'Activo' : 'Inactivo' }}
+        </td>
+
+        <td>
+          <a
+            [routerLink]="['/professors/detail', professor.id]"
+            class="btn btn-info btn-sm me-2">
+            Ver
+          </a>
+
+          <a
+            [routerLink]="['/professors/update', professor.id]"
+            class="btn btn-warning btn-sm me-2">
+            Editar
+          </a>
+
+          <button
+            class="btn btn-danger btn-sm"
+            (click)="deleteProfessor(professor.id)">
+            Eliminar
+          </button>
+        </td>
+      </tr>
+
+      <tr *ngIf="professors.length === 0">
+        <td colspan="6" class="text-center">
+          No hay profesores registrados.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
