@@ -1,0 +1,35 @@
+
+<div class="container mt-4">
+  <h2>Detalle del profesor</h2>
+
+  <div *ngIf="loading" class="alert alert-info">
+    Cargando profesor...
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <div *ngIf="professor" class="card mt-3">
+    <div class="card-body">
+      <p><strong>ID:</strong> {{ professor.id }}</p>
+      <p><strong>Nombre:</strong> {{ professor.name }}</p>
+      <p><strong>Correo:</strong> {{ professor.email }}</p>
+      <p><strong>Especialidad:</strong> {{ professor.specialty }}</p>
+      <p>
+        <strong>Estado:</strong>
+        {{ professor.status ? 'Activo' : 'Inactivo' }}
+      </p>
+
+      <a
+        [routerLink]="['/professors/update', professor.id]"
+        class="btn btn-warning me-2">
+        Editar
+      </a>
+
+      <a routerLink="/professors/list" class="btn btn-secondary">
+        Volver
+      </a>
+    </div>
+  </div>
+</div>
