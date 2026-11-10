@@ -1,0 +1,67 @@
+
+<div class="container mt-4">
+
+  <h2 class="mb-4">Registrar salón</h2>
+
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <form #form="ngForm" (ngSubmit)="save()">
+
+    <div class="mb-3">
+      <label class="form-label">Código</label>
+      <input
+        type="text"
+        class="form-control"
+        name="code"
+        [(ngModel)]="room.code"
+        required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Edificio</label>
+      <input
+        type="text"
+        class="form-control"
+        name="building"
+        [(ngModel)]="room.building"
+        required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Capacidad</label>
+      <input
+        type="number"
+        class="form-control"
+        name="capacity"
+        [(ngModel)]="room.capacity"
+        min="1"
+        required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Disponibilidad</label>
+      <select
+        class="form-select"
+        name="available"
+        [(ngModel)]="room.available">
+
+        <option [ngValue]="true">Disponible</option>
+        <option [ngValue]="false">No disponible</option>
+      </select>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary me-2"
+      [disabled]="form.invalid || saving">
+      {{ saving ? 'Guardando...' : 'Guardar salón' }}
+    </button>
+
+    <a routerLink="/rooms/list" class="btn btn-secondary">
+      Cancelar
+    </a>
+
+  </form>
+</div>
