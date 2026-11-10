@@ -1,0 +1,209 @@
+<app-back />
+<div class="container-fluid mt-3">
+
+    <!-- Header -->
+    <div class="mb-4">
+        <h3 class="fw-bold mb-1">Detalle del curso</h3>
+        <p class="text-muted mb-0">
+            Información general y académica del curso.
+        </p>
+    </div>
+
+    @if (course) {
+
+        <!-- Course Header -->
+        <div class="card border mb-4">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center gap-3">
+
+                    <div class="rounded-circle bg-primary bg-opacity-10 text-primary d-flex align-items-center justify-content-center"
+                         style="width: 65px; height: 65px; font-size: 2rem;">
+                        <i class="bi bi-book-fill"></i>
+                    </div>
+
+                    <div class="flex-grow-1">
+                        <h4 class="fw-bold mb-1">{{ course.name }}</h4>
+                        <span class="text-muted">
+                            Curso #{{ course.id }}
+                        </span>
+                    </div>
+
+                    <span
+                        class="badge rounded-pill"
+                        [ngClass]="course.status ? 'text-bg-success' : 'text-bg-danger'">
+                        {{ course.status ? 'Activo' : 'Inactivo' }}
+                    </span>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+
+            <!-- General Information -->
+            <div class="col-12 col-lg-7">
+                <div class="card border h-100">
+
+                    <div class="card-header bg-white py-3">
+                        <h5 class="fw-semibold mb-0">
+                            <i class="bi bi-info-circle text-primary me-2"></i>
+                            Información general
+                        </h5>
+                    </div>
+
+                    <div class="card-body p-4">
+
+                        <div class="row g-4">
+
+                            <div class="col-12">
+                                <small class="text-muted d-block mb-1">
+                                    Nombre del curso
+                                </small>
+                                <span class="fw-medium">
+                                    {{ course.name }}
+                                </span>
+                            </div>
+
+                            <div class="col-12">
+                                <small class="text-muted d-block mb-2">
+                                    Descripción
+                                </small>
+                                <p class="mb-0 text-secondary">
+                                    {{ course.description }}
+                                </p>
+                            </div>
+
+                            <div class="col-md-6">
+                                <small class="text-muted d-block mb-1">
+                                    Código del curso
+                                </small>
+                                <span>
+                                    <i class="bi bi-hash text-secondary me-2"></i>
+                                    {{ course.id }}
+                                </span>
+                            </div>
+
+                            <div class="col-md-6">
+                                <small class="text-muted d-block mb-1">
+                                    Créditos académicos
+                                </small>
+                                <span>
+                                    <i class="bi bi-award text-secondary me-2"></i>
+                                    {{ course.credits }} créditos
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Academic Information -->
+            <div class="col-12 col-lg-5">
+                <div class="card border h-100">
+
+                    <div class="card-header bg-white py-3">
+                        <h5 class="fw-semibold mb-0">
+                            <i class="bi bi-mortarboard text-primary me-2"></i>
+                            Información académica
+                        </h5>
+                    </div>
+
+                    <div class="card-body p-4">
+
+                        <div class="mb-4">
+                            <small class="text-muted d-block mb-2">
+                                Semestre académico
+                            </small>
+
+                            <div class="d-flex align-items-center gap-3">
+
+                                <div class="rounded-3 bg-primary bg-opacity-10 text-primary p-3">
+                                    <i class="bi bi-calendar3 fs-3"></i>
+                                </div>
+
+                                <div>
+                                    <h2 class="fw-bold mb-0">
+                                        {{ course.semester }}°
+                                    </h2>
+                                    <small class="text-muted">
+                                        Semestre del programa
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="mb-4">
+                            <small class="text-muted d-block mb-2">
+                                Créditos académicos
+                            </small>
+
+                            <div class="d-flex align-items-center gap-3">
+
+                                <div class="rounded-3 bg-info bg-opacity-10 text-info p-3">
+                                    <i class="bi bi-award fs-3"></i>
+                                </div>
+
+                                <div>
+                                    <h2 class="fw-bold mb-0">
+                                        {{ course.credits }}
+                                    </h2>
+                                    <small class="text-muted">
+                                        Créditos del curso
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="mb-4">
+                            <small class="text-muted d-block mb-2">
+                                Estado del curso
+                            </small>
+
+                            @if (course.status) {
+                                <span class="badge text-bg-success">
+                                    <i class="bi bi-check-circle me-1"></i>
+                                    Activo
+                                </span>
+                            } @else {
+                                <span class="badge text-bg-danger">
+                                    <i class="bi bi-x-circle me-1"></i>
+                                    Inactivo
+                                </span>
+                            }
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <small class="text-muted d-block mb-2">
+                                Identificador del curso
+                            </small>
+                            <span class="fw-semibold">
+                                #{{ course.id }}
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    } @else {
+
+        <div class="alert alert-warning">
+            <i class="bi bi-exclamation-triangle me-2"></i>
+            No se encontró información del curso.
+        </div>
+
+    }
+
+</div>
